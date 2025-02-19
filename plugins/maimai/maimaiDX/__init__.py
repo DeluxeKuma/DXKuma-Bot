@@ -68,9 +68,9 @@ wcb = on_regex(
 )
 
 whatSong = on_regex(
-    r"^((search|查歌)\s*((dx|sd|标准?)\s*)?.+|((dx|sd|标准?)\s*)?.+是什么歌)$", re.I
+    r"^((search|查歌)\s*((dx|sd|标准?)\s*)?.+|((dx|sd|标准?)\s*)?.+是什么歌？?)$", re.I
 )
-aliasSearch = on_regex(r"^((alias|查看?别名)\s*.+|.+有什么别名)$")
+aliasSearch = on_regex(r"^((alias|查看?别名)\s*.+|.+有(什么|哪些)别名？?)$")
 
 all_plate = on_regex(r"^(plate|看姓名框)$", re.I)
 all_frame = on_regex(r"^(frame|看背景)$", re.I)
@@ -2012,7 +2012,7 @@ async def _(event: MessageEvent):
 async def _(event: MessageEvent):
     msg = event.get_plaintext()
     match = re.fullmatch(
-        r"(?:search|查歌)\s*(?:(dx|sd|标准?)\s*)?(.+)|(?:(dx|sd|标准?)\s*)?(.+)是什么歌",
+        r"(?:search|查歌)\s*(?:(dx|sd|标准?)\s*)?(.+)|(?:(dx|sd|标准?)\s*)?(.+)是什么歌？?",
         msg,
         re.I,
     )
@@ -2073,7 +2073,9 @@ async def _(event: MessageEvent):
 @aliasSearch.handle()
 async def _(event: MessageEvent):
     msg = event.get_plaintext()
-    match = re.fullmatch(r"(?:alias|查看?别名)\s*(.+)|(.+)有什么别名", msg, re.I)
+    match = re.fullmatch(
+        r"(?:alias|查看?别名)\s*(.+)|(.+)有(什么|哪些)别名？?", msg, re.I
+    )
     if not match:
         return
 

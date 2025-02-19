@@ -103,7 +103,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
         if weight == 0:
             if type == "sfw":
                 msg = MessageSegment.text(
-                    "迪拉熊提醒你：注意不要过度刷屏，给其他玩家带来麻烦哦，再试一下吧~"
+                    "迪拉熊提醒你：注意不要过度刷屏，给其他人带来麻烦哦，再试一下吧~"
                 )
             elif type == "nsfw":
                 msg = MessageSegment.text(

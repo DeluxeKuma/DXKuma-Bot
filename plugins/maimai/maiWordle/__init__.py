@@ -503,7 +503,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
 
     avg = sum(d[1] for d in scores) / len(scores) if len(scores) > 0 else 0
     msg = "\r\n".join(leaderboard_output)
-    msg = f"猜歌准确率排行榜Top{len(leaderboard_output)}：\r\n{msg}\r\n\r\n玩家数：{len(leaderboard)}/{len(scores)}\r\n平均达成率：{math.trunc(avg * 1000000) / 1000000:.4%}\r\n\r\n注：若长时间不参与猜歌游戏，将不计入排行榜，重新参与十首歌即可恢复排名。"
+    msg = f"猜歌准确率排行榜Top{len(leaderboard_output)}：\r\n{msg}\r\n\r\n上榜人数：{len(leaderboard)}/{len(scores)}\r\n平均达成率：{math.trunc(avg * 1000000) / 1000000:.4%}\r\n\r\n注：若长时间不参与猜歌游戏，将不计入排行榜，重新参与十首歌即可恢复排名。"
     await rank.send(msg)
 
 
@@ -553,7 +553,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
         leaderboard_output.append(f"\r\n游玩次数：{_times}")
 
     msg = "\r\n".join(leaderboard_output)
-    msg = f"您在排行榜上的位置：\r\n{msg}\r\n\r\n注：若长时间不参与猜歌游戏，将不计入排行榜，重新参与十首歌即可恢复排名。"
+    msg = f"您在排行榜上的位置：\r\n{msg}\r\n\r\n注：若长时间不参与猜歌游戏，将不计入排行榜，重新参与十首歌即可重新上榜。"
     await rank.send(
         MessageSegment.at(user_id), MessageSegment.text(" "), MessageSegment.text(msg)
     )
